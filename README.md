@@ -12,6 +12,10 @@ database username and password for this file. The user should only have the perm
 necessary to copy the database tables. 
 
 To have the script run daily at midnight, execute:
-  crontab -eu <USER>
+```
+crontab -eu <USER>
+```
 And enter:
+```
   0 0 * * * /path_to_script/db_backup.sh 
+```
