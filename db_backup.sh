@@ -15,7 +15,7 @@ NOW="$(date +%m_%d_%Y+%H:%M:%S)"
 
 # Create the backup
 echo "Creating backup: $DB_NAME-$NOW.sql"
-mysqldump $DB_NAME -p$DB_PASS -u$DB_USER --add-drop-table> "./backups/$DB_NAME-$NOW.sql"
+mysqldump $DB_NAME -p$DB_PASS -u$DB_USER --add-drop-table> "$BACKUP_DIR/$DB_NAME-$NOW.sql"
 
 # Remove all but the most recent backups, depending on number
 cd $BACKUP_DIR
