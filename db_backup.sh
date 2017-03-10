@@ -19,7 +19,12 @@ mysqldump $DB_NAME -p$DB_PASS -u$DB_USER --add-drop-table> "./backups/$DB_NAME-$
 
 # Remove all but the most recent backups, depending on number
 cd $BACKUP_DIR
-rm `ls -t | awk -v awk_num_backups=$NUM_BACKUPS 'NR>awk_num_backups'`
+cd $BACKUP_DIR
+old_set=$(ls -t | awk -v awk_num_backups=$NUM_BACKUPS 'NR>awk_num_backups')
+if [ "$old_set" ]
+then
+    rm $old_set
+fi
 
 # Edit the user cron jobs with the following
 # crontab -eu <USER>
